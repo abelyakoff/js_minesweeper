@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Minesweeper</title>
+        <link href="css/stylesheet.css" rel="stylesheet">
+    </head>
+    
+    <body>
+
+        <div class="container">
+            
+            <div class="menu">
+
+                <h1 class="title">Minesweeper</h1>
+                <button class="menu-start-button">Start</button>
+                <p class="menu-text">Markers remaining:<span class="menu-text" id="markers-remaining"></span></p>
+                <p class="menu-text">Time:<span class="menu-text" id="time"></span></p>
+                <p class="status-text" id="status-waiting">PRESS START!</p>
+                <p class="status-text" class="hidden" id="status-in-progress">GAME IN PROGRESS</p>
+                <p class="status-text" class="hidden" id="status-lose">BOOM! YOU LOSE!</p>
+                <p class="status-text" class="hidden" id="status-win">GOOD JOB! YOU WIN!</p>
+
+            </div>
+
+            <div class="gameboard"></div>
+
+        </div>
+
+        <footer>
+            <p>&copy; 1992 Microsoft Corporation. All rights reserved.</p>
+            <p>&copy; 2021 programming by Alexander Belyakov and Evgeny Vaganov.</p>
+        </footer>
+
+    <script src="js/minesweeper.js"></script>
+    </body>
+
+</html>
