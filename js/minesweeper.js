@@ -28,7 +28,6 @@ root.style.setProperty('--image-size', IMAGE_SIZE.toString() + "px");
 root.style.setProperty('--border-size', BORDER_SIZE.toString() + "px");
 root.style.setProperty('--digit-size', (CELL_SIZE / 28).toFixed(2).toString() + "rem");
 
-const loading = document.querySelector('.loading');
 const gameboardDiv = document.querySelector('.gameboard');
 const newGameButton = document.querySelector('.menu-start-button');
 const markersRemainingSpan = document.getElementById('markers-remaining');
@@ -213,5 +212,4 @@ function gameOver() {
 
 // GAME START
 
-loading.style.display = "none";
 newGameButton.addEventListener('click', newGame);
