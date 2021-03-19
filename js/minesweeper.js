@@ -28,6 +28,7 @@ root.style.setProperty('--image-size', IMAGE_SIZE.toString() + "px");
 root.style.setProperty('--border-size', BORDER_SIZE.toString() + "px");
 root.style.setProperty('--digit-size', (CELL_SIZE / 28).toFixed(2).toString() + "rem");
 
+const loading = document.querySelector('.loading');
 const gameboardDiv = document.querySelector('.gameboard');
 const newGameButton = document.querySelector('.menu-start-button');
 const markersRemainingSpan = document.getElementById('markers-remaining');
@@ -55,10 +56,10 @@ function newGame() {
     gameWon = false;
     gameboardDiv.innerHTML = "";
     newGameButton.innerText = "New Game";
-    
+
     markersRemainingSpan.innerHTML = markersRemaining;
     timeSpan.innerHTML = time;
-    
+
     statusWaiting.style.display = 'none';
     statusInProgress.style.display = 'block';
     statusLose.style.display = 'none';
@@ -103,7 +104,7 @@ function calculateMinefield() {
     for (let i = 0; i < cells.length; i++) {
 
         if (cells[i] === 'X') continue;
-        
+
         let mines = 0;
 
         if (i >= WIDTH && cells[i - WIDTH] === 'X') { mines++; }
@@ -134,7 +135,7 @@ function checkCell(e) {
 
     const id = parseInt(e.target.id);
     checkCellRecursive(id);
-    
+
     // check for win state
     if (gameboard.filter(element => element.classList.contains('cell-revealed')).length === EMPTY_CELLS) {
         gameWon = true;
@@ -146,9 +147,9 @@ function checkCell(e) {
 function checkCellRecursive(id) {
 
     if (!gameboard[id].classList.contains('cell-revealed')) {
-    
+
         gameboard[id].classList.add('cell-revealed');
-        
+
         if (gameboard[id].classList.contains('flag')) {
             gameboard[id].classList.remove('flag');
             markersRemaining += 1;
@@ -187,7 +188,7 @@ function toggleMarker(e) {
         markersRemaining += 1;
         markersRemainingSpan.innerHTML = markersRemaining;
     }
-    
+
     // add flag marker if absent
     else if (!gameboard[id].classList.contains('cell-revealed')) {
         gameboard[id].classList.add('flag');
@@ -204,7 +205,7 @@ function gameOver() {
         gameboard[i].removeEventListener('click', checkCell);
         gameboard[i].removeEventListener('contextmenu', toggleMarker);
         if (cells[i] === 'X' && !gameWon) { gameboard[i].classList.add('mine-revealed'); } // show all mines
-        if (gameboard[i].classList.contains('flag') && cells[i] !== 'X') { gameboard[i].classList.add('flag-incorrect'); } // mark incorrectly placed flags 
+        if (gameboard[i].classList.contains('flag') && cells[i] !== 'X') { gameboard[i].classList.add('flag-incorrect'); } // mark incorrectly placed flags
     }
     if (gameWon) { statusWin.style.display = 'block'; }
     else { statusLose.style.display = 'block'; }
@@ -212,4 +213,5 @@ function gameOver() {
 
 // GAME START
 
+loading.style.display = "none";
 newGameButton.addEventListener('click', newGame);
